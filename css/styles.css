@@ -34,6 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   opacity: 0;
   animation: page-fade-in 0.5s ease forwards;
+  cursor: url("../images/cursor.png"), auto;
 }
 
 @keyframes page-fade-in {
@@ -1041,6 +1042,3 @@ body.disclaimer-locked { overflow: hidden; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 
-body {
-    cursor: url("images/cursor.png"), auto;
-}
