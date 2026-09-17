@@ -1040,3 +1040,7 @@ body.disclaimer-locked { overflow: hidden; }
 @media (max-width: 500px) {
   .footer-grid { grid-template-columns: 1fr; }
 }
+
+body {
+    cursor: url("images/cursor.png"), auto;
+}
