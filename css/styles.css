@@ -384,7 +384,7 @@ body.disclaimer-locked { overflow: hidden; }
   display: none;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: var(--cursor-link);
   padding: 8px;
 }
 .nav-toggle span {
@@ -528,7 +528,7 @@ body.disclaimer-locked { overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: var(--cursor-link);
   z-index: 60;
   opacity: 0;
   visibility: hidden;
@@ -557,7 +557,7 @@ body.disclaimer-locked { overflow: hidden; }
   font-size: 0.98rem;
   font-weight: 500;
   border: 1px solid transparent;
-  cursor: pointer;
+  cursor: var(--cursor-link);
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn:hover { transform: translateY(-2px); }
@@ -799,7 +799,7 @@ body.disclaimer-locked { overflow: hidden; }
   font-size: 0.9rem;
   font-family: var(--font-body);
   color: var(--color-text-muted);
-  cursor: pointer;
+  cursor: var(--cursor-link);
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .testi-filter:hover { border-color: var(--color-ink); color: var(--color-ink); }
@@ -1058,7 +1058,7 @@ body.disclaimer-locked { overflow: hidden; }
    ============================================ */
 .phone-copy {
   position: relative;
-  cursor: pointer;
+  cursor: var(--cursor-link);
   background: none;
   border: none;
   padding: 0;
@@ -1148,4 +1148,30 @@ body.disclaimer-locked { overflow: hidden; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 
-  <!-- CTA -->
+a,
+button,
+[role="button"],
+input[type="submit"],
+label,
+select,
+summary {
+ cursor: url("../images/cursor-pointer.png") 6 0, pointer;
+}
+:root {
+  --cursor-default: url("../images/cursor.png") 0 0, auto;
+  --cursor-link: url("../images/cursor-pointer.png") 16 16, pointer;
+}
+
+body {
+  cursor: var(--cursor-default);
+}
+
+a,
+button,
+[role="button"],
+input[type="submit"],
+label,
+select,
+summary {
+  cursor: var(--cursor-link);
+}
