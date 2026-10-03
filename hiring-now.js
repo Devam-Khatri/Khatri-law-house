@@ -2,14 +2,14 @@
   'use strict';
 
   function initHiringMotion() {
-    if (typeof gsap === 'undefined') return;
-    gsap.registerPlugin(ScrollTrigger);
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      gsap.set('.hire-reveal', { autoAlpha: 1, y: 0 });
-      return;
-    }
+    // Content is visible by default. Only hide it for animation once we know
+    // GSAP and ScrollTrigger actually loaded, so a blocked CDN never leaves the page blank.
+    if (reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    document.documentElement.classList.add('hire-motion');
 
     gsap.from('.hire-hero-copy > *', {
       opacity: 0,
@@ -17,16 +17,17 @@
       duration: 0.85,
       stagger: 0.09,
       ease: 'power3.out',
-      delay: 0.15
+      delay: 0.15,
+      clearProps: 'all'
     });
 
-    gsap.from('.hire-hero-mark', {
+    gsap.from('.hire-hero-facts', {
       opacity: 0,
-      scale: 0.72,
-      rotation: -8,
-      duration: 1.25,
+      y: 32,
+      duration: 0.9,
       ease: 'power3.out',
-      delay: 0.25
+      delay: 0.3,
+      clearProps: 'all'
     });
 
     gsap.to('.hire-hero-media img', {
@@ -40,19 +41,7 @@
       }
     });
 
-    gsap.to('.hire-hero-mark', {
-      y: -90,
-      rotation: 7,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hire-hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1
-      }
-    });
-
-    document.querySelectorAll('.hire-reveal').forEach((el) => {
+    gsap.utils.toArray('.hire-reveal').forEach(function (el) {
       gsap.fromTo(el,
         { autoAlpha: 0, y: 38 },
         {
@@ -60,21 +49,24 @@
           y: 0,
           duration: 0.85,
           ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 84%', once: true }
+          clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
         }
       );
     });
 
-    gsap.utils.toArray('.hire-bento-card').forEach((card, index) => {
+    // Role cards get their own stagger. clearProps keeps the CSS hover lift working afterwards.
+    gsap.utils.toArray('.hire-bento-card').forEach(function (card, index) {
       gsap.fromTo(card,
-        { y: 55, scale: 0.97 },
+        { autoAlpha: 0, y: 48 },
         {
+          autoAlpha: 1,
           y: 0,
-          scale: 1,
           duration: 0.8,
-          delay: index * 0.06,
+          delay: (index % 4) * 0.07,
           ease: 'power3.out',
-          scrollTrigger: { trigger: card, start: 'top 88%', once: true }
+          clearProps: 'transform',
+          scrollTrigger: { trigger: card, start: 'top 90%', once: true }
         }
       );
     });

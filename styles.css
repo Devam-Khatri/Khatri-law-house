@@ -395,7 +395,7 @@ body.disclaimer-locked { overflow: hidden; }
   margin: 5px 0;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1080px) {
   .nav-links { 
     display: none;
     position: absolute;
@@ -1217,7 +1217,8 @@ body::before {
 .brand-copy strong { font-family: var(--font-display); font-weight:500; font-size:1.12rem; }
 .brand-copy small { margin-top:5px; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--color-text-muted); }
 .nav-links { gap: 28px; }
-.nav-links a { font-size:.88rem; }
+.nav-links a { font-size:.88rem; white-space:nowrap; }
+.brand-copy { white-space:nowrap; }
 .nav-cta { padding: 11px 18px; }
 
 .hero-editorial {
@@ -1388,11 +1389,13 @@ body::before {
   *, *::before, *::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; }
 }
 
-/* Hiring Now navigation treatment — shared across the full site. */
+/* Hiring Now navigation treatment — shared across the full site.
+   Single source of truth: hiring-now.css must not restyle the nav. */
 .nav-links a.nav-hiring {
   color: var(--color-ink) !important;
   font-weight: 800;
   letter-spacing: .065em;
+  text-transform: uppercase;
   padding: 9px 12px;
   border: 1px solid rgba(169,130,91,.38);
   background: linear-gradient(100deg, rgba(217,184,119,.22), rgba(217,184,119,.06), rgba(217,184,119,.22));
@@ -1403,8 +1406,18 @@ body::before {
 .nav-links a.nav-hiring::after { display: none !important; }
 .nav-links a.nav-hiring span { display:inline-block; text-shadow: 0 0 13px rgba(184,139,69,.24); }
 .nav-links a.nav-hiring:hover { color: var(--color-ink) !important; box-shadow: 0 0 0 1px rgba(217,184,119,.08), 0 0 28px rgba(217,184,119,.28); }
+.nav-links a.nav-hiring.active { border: 1px solid var(--color-brass); }
 @keyframes hiring-nav-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 @keyframes hiring-nav-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -20% 0; } }
+
+/* Mobile / tablet menu: the pill sits still inside the dropdown */
+@media (max-width: 1080px) {
+  .nav-links { gap:0; } /* the desktop gap rule above was leaking into the dropdown */
+  .nav-links a.nav-hiring { display:inline-block; margin:14px 32px; animation:none; }
+}
+@media (max-width: 700px) {
+  .nav-links a.nav-hiring { margin:14px 20px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .nav-links a.nav-hiring { animation: none; }
 }
