@@ -1,0 +1,41 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "@id": "https://khatrilawhouse.com/#legal-service",
+  "name": "Khatri Law House",
+  "url": "https://khatrilawhouse.com/",
+  "image": "https://khatrilawhouse.com/images/founder.jpg",
+  "logo": "https://khatrilawhouse.com/images/logo.jpg",
+  "description": "Khatri Law House, led by Advocate Roshan Khatri, is a law firm in Lucknow handling family, criminal, corporate, civil and High Court matters.",
+  "telephone": "+91 63946 72560",
+  "email": "advocateroshankhatri@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Sec-20/26, Indira Nagar Rd, Sector 20, Chauraha, Indira Nagar",
+    "addressLocality": "Lucknow",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "226016",
+    "addressCountry": "IN"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Lucknow"
+    },
+    {
+      "@type": "State",
+      "name": "Uttar Pradesh"
+    }
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Roshan Khatri",
+    "jobTitle": "Advocate"
+  },
+  "sameAs": [
+    "https://www.facebook.com/khatrilawhouse/",
+    "https://wa.me/919336669096"
+  ]
+}
+</script>
